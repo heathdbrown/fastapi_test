@@ -1,0 +1,12 @@
+--requirement requirements.txt
+asgi-lifespan
+black
+coverage
+httpx
+ipython
+mypy
+pyinstrument
+pylint
+pytest
+pytest-asyncio
+semver
