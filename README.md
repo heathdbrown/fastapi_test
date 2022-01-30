@@ -9,7 +9,7 @@ docker-compose up -d --build
 # Test the application
 ```bash
 docker-compose up -d --build
-docker-compose exe web pytest .
+docker-compose exec -T web pytest .
 ```
 
 # See the application
