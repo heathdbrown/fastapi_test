@@ -12,6 +12,15 @@ docker-compose up -d --build
 docker-compose exec -T web pytest .
 ```
 
+# Non-docker workflow, local only
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r ./src/requirements-dev.txt
+pytest .
+```
+
 # See the application
 - http://localhost:8002/ping
 - http://localhost:8002/docs
