@@ -9,4 +9,5 @@ pyinstrument
 pylint
 pytest
 pytest-asyncio
+requests
 semver
