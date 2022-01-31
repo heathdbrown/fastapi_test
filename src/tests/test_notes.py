@@ -1,17 +1,27 @@
+"""test_notes
+Test for notes model and routes
+
+"""
+
 import json
 
 import pytest
 
 from app.api import crud
 
-from starlette.testclient import TestClient
-
 from app.main import app
-
-client = TestClient(app)
 
 
 def test_create_note(test_app, monkeypatch):
+    """test_create_note
+
+    Parameters:
+    -----------
+    test_app: TestClient
+    monkeypatch: pytest monkeypatch
+
+    """
+
     test_request_payload = {"title": "something", "description": "something else"}
     test_response_payload = {
         "id": 1,
@@ -34,11 +44,28 @@ def test_create_note(test_app, monkeypatch):
 
 
 def test_create_note_invalid_json(test_app):
+    """test_create_note_invalid_json
+
+    Parameters:
+    -----------
+    test_app: TestClient
+
+    """
+
     response = test_app.post("/notes/", data=json.dumps({"title": "something"}))
     assert response.status_code == 422
 
 
 def test_read_note(test_app, monkeypatch):
+    """test_read_note
+
+    Parameters:
+    -----------
+    test_app: TestClient
+    monkeypatch: pytest monkeypatch
+
+    """
+
     test_data = {"id": 1, "title": "something", "description": "something else"}
 
     async def mock_get(id):
@@ -52,6 +79,15 @@ def test_read_note(test_app, monkeypatch):
 
 
 def test_read_note_incorrect_id(test_app, monkeypatch):
+    """test_read_note_incorrect_id
+
+    Parameters:
+    -----------
+    test_app: TestClient
+    monkeypatch: pytest monkeypatch
+
+    """
+
     async def mock_get(id):
         return None
 
@@ -63,6 +99,15 @@ def test_read_note_incorrect_id(test_app, monkeypatch):
 
 
 def test_read_all_notes(test_app, monkeypatch):
+    """test_read_all_notes
+
+    Parameters:
+    -----------
+    test_app: TestClient
+    monkeypatch: pytest monkeypatch
+
+    """
+
     test_data = [
         {"title": "something", "description": "something else", "id": 1},
         {"title": "someone", "description": "someone else", "id": 2},
