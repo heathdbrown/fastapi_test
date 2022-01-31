@@ -4,7 +4,7 @@
 
 # Third Party imports
 from fastapi import FastAPI
-from app.api import ping
+from app.api import notes, ping
 from app.db import engine, database, metadata
 
 metadata.create_all(engine)
@@ -20,3 +20,4 @@ async def shutdown():
     await database.disconnect()
 
 app.include_router(ping.router)
+app.include_router(notes.router, prefix="/notes", tags=["notes"])
