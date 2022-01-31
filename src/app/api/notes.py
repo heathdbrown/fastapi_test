@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.exceptions import HTTPException
 
 from app.api import crud
 from app.api.models import NoteDB, NoteSchema
@@ -17,6 +18,9 @@ async def create_note(payload: NoteSchema):
     return response_object
 
 
-@router.get("/notes")
-async def notes():
-    return {"notes": [ {"id": 1, "name": "Note 1", "content": "Note content"}, {"id": 2, "name": "Note 2", "content": "Note content"},] }
+@router.get("/{id}/", response_model=NoteDB)
+async def read_note(id: int):
+    note = await crud.get(id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    return note
