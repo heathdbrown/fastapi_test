@@ -5,5 +5,6 @@ class NoteSchema(BaseModel):
     title: str
     description: str
 
+
 class NoteDB(NoteSchema):
     id: int

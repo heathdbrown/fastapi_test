@@ -8,15 +8,16 @@ from typing import List
 
 router = APIRouter()
 
+
 @router.post("/", response_model=NoteDB, status_code=201)
 async def create_note(payload: NoteSchema):
     note_id = await crud.post(payload)
 
     response_object = {
-            "id": note_id,
-            "title": payload.title,
-            "description": payload.description,
-            }
+        "id": note_id,
+        "title": payload.title,
+        "description": payload.description,
+    }
     return response_object
 
 
@@ -27,6 +28,7 @@ async def read_note(id: int):
         raise HTTPException(status_code=404, detail="Note not found")
     return note
 
+
 @router.get("/", response_model=List[NoteDB])
 async def read_all_notes():
-    return await  crud.get_all()
+    return await crud.get_all()
