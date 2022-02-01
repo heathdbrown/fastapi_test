@@ -1,3 +1,7 @@
+'''db.py
+Database creation and modification
+
+'''
 import os
 
 from databases import Database
