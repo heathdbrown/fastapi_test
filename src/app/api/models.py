@@ -1,21 +1,23 @@
-'''models.py
+"""models.py
 Uses pydantic to model data
 
-'''
+"""
 
 from pydantic import BaseModel
 
 
 class NoteSchema(BaseModel):
-    '''NoteSchema
+    """NoteSchema
     Models Note entry
-    '''
+    """
+
     title: str
     description: str
 
 
 class NoteDB(NoteSchema):
-    '''NotDB
+    """NotDB
     Models data for database entries
-    '''
+    """
+
     id: int

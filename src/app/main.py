@@ -1,6 +1,6 @@
-'''main
+"""main
 Main application code
-'''
+"""
 #!/usr/bin/env python3
 
 # Standard Library imports
@@ -17,18 +17,18 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def startup():
-    '''startup
+    """startup
     Connect  to database on startup event
-    '''
+    """
 
     await database.connect()
 
 
 @app.on_event("shutdown")
 async def shutdown():
-    '''shutdown
+    """shutdown
     Disconnect from database on shutdown event
-    '''
+    """
 
     await database.disconnect()
 
